@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.SpringDemo.entity.Course;
 import com.example.SpringDemo.service.CourseService;
 import com.example.SpringDemo.dao.CourseDao;
-
+@Service
 public class CourseServiceImpl implements CourseService {
 
 	List<Course> list;
@@ -34,4 +35,57 @@ public class CourseServiceImpl implements CourseService {
 
 		// return coursedao.findAll();
 	}
+
+	public Course getCourse(long courseId) {
+		// TODO Auto-generated method stub
+		
+		Course c = null;
+		  
+		  for(Course c1 : list ) 
+		  {
+			  if(c1.getId() == courseId) 
+			  { 
+			  c = c1; 
+		  		break; 
+		  	} 
+		  }
+		return c;
+		
+	}
+	
+	public void addCourse(Course course) { // TODO Auto-generated method stub
+
+		 list.add(course); 
+			
+			}
+	
+	public void delCourse(long courseId) { // TODO Auto-generated method stub
+		Course c = null;
+
+		for (Course c1 : list) {
+			if (c1.getId() == courseId) {
+				c = c1;
+				list.remove(c);
+				break;
+			}
+		}
+		
+	}
+	
+	public Course updateCourse(Course course) { // TODO Auto-generated
+	 
+	  
+	  list.forEach(e -> { if(e.getId()==course.getId()) 
+	  {
+	  e.setTitle(course.getTitle()); 
+	  e.setDescription(course.getDescription()); }
+	  }); 
+	  list.add(course); 
+	  return course;
+	  
+	  //return coursedao.save(course);
+	  
+	  }
+
+
 }

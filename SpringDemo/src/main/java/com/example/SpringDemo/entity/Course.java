@@ -2,6 +2,10 @@ package com.example.SpringDemo.entity;
 
 public class Course {
 	
+	public Course() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public long getId() {
 		return id;
 	}
